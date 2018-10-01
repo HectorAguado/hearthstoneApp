@@ -2,8 +2,8 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({ 
     cellContainer: {
-        height: 200,
-        width: '33.33%', 
+        height: 285,
+        width: '50%', 
         // borderWidth: 0.5, 
         // borderColor: 'blue', 
         alignItems:'center', 
