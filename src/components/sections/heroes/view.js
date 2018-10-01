@@ -20,7 +20,7 @@ class Heroes extends Component {
 
     _fetchHeroesLIst(){
         api.fetchHeroes().then( response => {
-            this.setState({ heroesList: response? response.data : null})          
+            this.setState({ heroesList: response? response.data : null}) 
         }).catch( error => {
             console.log("Fect Heroes List ERROR ==> ", error)
             this.setState({ heroesList: [] })
@@ -33,18 +33,17 @@ class Heroes extends Component {
     }
 
     // de value, tomamos sólo los valores que necesitamos, usando llaves
-    _renderItem({ item, index}){
-        return <HeroeCell heroe={item} onHeroePress={ v => this._onHeroeTapped(v)} />
-        // return <HeroeCell heroe={item} onHeroePress={ () => this._onHeroeTapped(item)} />
+    _renderItem({ item, index}, playerClass){
+        return <HeroeCell heroe={item} onHeroePress={ () => this._onHeroeTapped(item)} />
     }
-
 
     render(){
         return(
             <View style={styles.container}>
                 <FlatList
+                numColumns={3}
                     data={this.state.heroesList}
-                    renderItem={ value => this._renderItem(value) }
+                    renderItem={ value => this._renderItem(value, "Paladin") }
                     keyExtractor={ (item, i) => 'cell' + item.cardId}
                 />
             </View>

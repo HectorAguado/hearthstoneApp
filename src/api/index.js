@@ -23,7 +23,8 @@ export function configureAxios() {
 }
 
 export function fetchHeroes() {
-    const url = '/cards/types/Hero?collectible=1&locale=esES&health=30'
+    // const url = '/cards/types/Hero?collectible=1&locale=esES&'
+    const url = '/cards/types/Hero?collectible=1'
     return axios.get( url )
 
     // return axios.get( url ).then((response) => {
