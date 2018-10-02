@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StatusBar, TouchableOpacity, Platform, StyleSheet, Text, View} from 'react-native';
 import { Router, Scene, Stack, Actions } from 'react-native-router-flux'
 
-import { Heroes } from './sections/'
+import { Heroes, PlayerClasses } from './sections/'
 import * as api from '../api/'
 
 
@@ -27,8 +27,14 @@ export default class App extends Component {
       <Scene 
           key="heroes" 
           component={Heroes} 
-          initial={true}
       />  
+      <Scene 
+          key="playerClasses" 
+          component={PlayerClasses} 
+          hideNavBar={true}
+          initial={true}
+      /> 
+      
   </Stack>
 </Router>
     );
