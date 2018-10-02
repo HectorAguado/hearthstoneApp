@@ -15,5 +15,16 @@ export default StyleSheet.create({
         // justifyContent: 'center',
         textAlign: 'center',
         marginBottom: 10,
+    },
+    mainImage:{
+        alignItems:'center',
+        justifyContent: 'center',
+        resizeMode:'contain',
+        // borderWidth: 1, 
+        // borderColor: 'blue',
+        marginTop: 50,
+        marginBottom: 20,
+        marginLeft: '5%'
+        // paddingHorizontal: 10
     }
 })

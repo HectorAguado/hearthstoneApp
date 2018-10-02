@@ -32,20 +32,12 @@ export default class extends Component {
             <View style={styles.container}>
                 <Image 
                     source={require('../../../resources/Hearthstone-Logo.png')}
-                    style={{width: '90%', height: 120}}
-                    alignItems='center'
-                    justifyContent='center'
-                    resizeMode='contain'
-                    // borderWidth={1} 
-                    // borderColor={'blue'} 
-                    marginTop={50}
-                    marginBottom={20}
-                    marginLeft='5%'
-                    // paddingHorizontal={10}
+                    style={[{width: '90%', height: 120}, styles.mainImage]}
                 />
                 <Text style={styles.mainText}>Listado de los distintos Héroes para cada clase</Text>
                 <FlatList
-                numColumns={1}
+                    paddingTop={20}
+                    numColumns={1}
                     data={this.state.classesList}
                     renderItem={ value => this._renderItem(value) }
                     keyExtractor={ (item, i) => 'cell' + item}
