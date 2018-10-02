@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { FlatList, Image, View, Text } from 'react-native'
+import { FlatList, Image, View, Text, Alert } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import styles from './styles'
 import { ClassCell } from '../../widgets'
 
@@ -19,13 +20,18 @@ export default class extends Component {
         })
     }
 
+    _onPlayerClassTapped(playerClass){
+        // Alert.alert('CLASE ', playerClass)
+        // console.log("PLAYER CLASS ITEM ==> ", playerClass)
+        Actions.heroes({title: playerClass, playerClass})
+    }
+
     _renderItem({ item, index}){
         console.log("ITEM VALUE ==> ", item)
         return (
-            <ClassCell playerClass={item}  />
+            <ClassCell playerClass={item} onPlayerClassPress={ () => this._onPlayerClassTapped(item)} />
         )
     }
-
 
     render(){
         return(

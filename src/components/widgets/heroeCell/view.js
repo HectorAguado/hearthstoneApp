@@ -18,9 +18,9 @@ export default class HeroeCell extends Component{
             style={styles.cellContainer}
         >
         <Image
-          source={{uri: heroe.img }}
-          style={{width: '100%', height: '100%'}}
-          resizeMode={'cover'}
+            source={{uri: heroe.img }}
+            style={{width: '100%', height: '100%'}}
+            resizeMode={'cover'}
         />
         </TouchableOpacity>                                                                                      
         )}

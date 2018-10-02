@@ -16,6 +16,10 @@ class Heroes extends Component {
     }
 
     componentDidMount(){
+        this.setState({
+            playerClass: this.props.playerClass
+        })
+        console.log("HEROES PROPS => ", this.props)
         this._fetchHeroesLIst()
     }
 
@@ -41,10 +45,6 @@ class Heroes extends Component {
 
         // api.fetchHeroes().then( response => {
         //     this.setState({ heroesList: response? response.data : null}) 
-        // }).catch( error => {
-        //     console.log("Fect Heroes List ERROR ==> ", error)
-        //     this.setState({ heroesList: [] })
-        // })
     }
 
     _onHeroeTapped(heroe){
@@ -61,7 +61,7 @@ class Heroes extends Component {
         return(
             <View style={styles.container}>
                 <FlatList
-                numColumns={2}
+                    numColumns={2}
                     data={this.state.heroesList}
                     renderItem={ value => this._renderItem(value, "Paladin") }
                     keyExtractor={ (item, i) => 'cell' + item.cardId}

@@ -10,18 +10,22 @@ export default class ClassCell extends Component{
 
     render(){
         const { playerClass, onPlayerClassPress } = this.props
-        const path = '../../../resources/logo-hearthstone-trans.png'
+        var path = '../../../resources/logo-hearthstone-trans.png'
         const path2 = '../../../resources/logo-' + playerClass + '.png'
+        // if(path2 !== null){
+        //     path = path2
+        // }
         console.log("PATH ===> ", path2)
+        console.log("PlayerClass ==> ", playerClass)
         return (
         <TouchableOpacity 
-            onPress={ () => onHeroePress(playerClass)} 
+            onPress={ () => onPlayerClassPress(playerClass)} 
             style={styles.cellContainer}
         >
             <Image
-            source={require(path)}
-            style={{width: 45, height: 45}}
-            resizeMode={'center'}         
+                source={require(path)}
+                style={{width: 45, height: 45}}
+                resizeMode={'center'}         
             />
             <Text style={styles.baseText} >
                 {playerClass}
