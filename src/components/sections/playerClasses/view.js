@@ -4,6 +4,8 @@ import { Actions } from 'react-native-router-flux'
 import styles from './styles'
 import { ClassCell } from '../../widgets'
 
+import PlayerClassArray from '../../../constants/'
+
 const classes = ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior'];
 
 export default class extends Component {
@@ -27,13 +29,14 @@ export default class extends Component {
     }
 
     _renderItem({ item, index}){
-        console.log("ITEM VALUE ==> ", item)
+        // console.log("ITEM VALUE ==> ", item)
         return (
             <ClassCell playerClass={item} onPlayerClassPress={ () => this._onPlayerClassTapped(item)} />
         )
     }
 
     render(){
+        const { classesList } = this.state
         return(
             <View style={styles.container}>
                 <Image 
@@ -44,7 +47,7 @@ export default class extends Component {
                 <FlatList
                     paddingTop={20}
                     numColumns={1}
-                    data={this.state.classesList}
+                    data={classesList}
                     renderItem={ value => this._renderItem(value) }
                     keyExtractor={ (item, i) => 'cell' + item}
                 />

@@ -10,7 +10,7 @@ export default class HeroeCell extends Component{
 
     render(){
         const { heroe, onHeroePress } = this.props
-        const name = heroe? heroe.name : 'Sin Nombre'
+        // const name = heroe? heroe.name : 'Sin Nombre'
         // const cost = heroe? heroe.cost : 'Gratis'
         return (
         <TouchableOpacity 

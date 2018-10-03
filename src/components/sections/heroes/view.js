@@ -71,8 +71,4 @@ class Heroes extends Component {
     }
 }
 
-
-
-
-
 export default Heroes

@@ -4,26 +4,33 @@ import styles from './styles'
 
 export default class ClassCell extends Component{
     static defaultProps = {
-        playerClass: null,
+        playerClass: 'hearthstone-trans',
         onPlayerClassPress: () => {}
     }
 
     render(){
+        // console.log("THIS.PROPS ==> ", this.props)
+        // console.log("PlayerClass ==> ", playerClass)
         const { playerClass, onPlayerClassPress } = this.props
-        var path = '../../../resources/logo-hearthstone-trans.png'
-        const path2 = '../../../resources/logo-' + playerClass + '.png'
-        // if(path2 !== null){
-        //     path = path2
-        // }
-        console.log("PATH ===> ", path2)
-        console.log("PlayerClass ==> ", playerClass)
+        const placeHolder = 'hearthstone-trans'
+        const pathPlaceHolder = '../../../resources/logo-' + placeHolder + '.png'
+        const pathPlayerClass = '../../../resources/logo-' + playerClass + '.png'
+        
+        const image = require(pathPlaceHolder)
+        
+        // const image = playerClass? { uri: playerClass.imgUrl } : require(pathPlaceHolder)
+        // const image = playerClass? require(pathPlayerClass) : require(pathPlaceHolder)
+        // console.log("PATH PlaceHolder ===> ", pathPlaceHolder)
+        // console.log("PATH PlayerClass ===> ", pathPlayerClass)
+        
         return (
         <TouchableOpacity 
             onPress={ () => onPlayerClassPress(playerClass)} 
             style={styles.cellContainer}
+            activeOpacity={0.6}
         >
             <Image
-                source={require(path)}
+                source={image}
                 style={{width: 45, height: 45}}
                 resizeMode={'center'}         
             />
@@ -33,5 +40,3 @@ export default class ClassCell extends Component{
         </TouchableOpacity>                                                                                      
         )}
 }
-//playerClass? {`../../../resources/logo-${playerClass}.png'`} : 
-/// {`../../../resources/logo-${playerClass}.png'`}
