@@ -4,28 +4,21 @@ import { Actions } from 'react-native-router-flux'
 import styles from './styles'
 import { ClassCell } from '../../widgets'
 
-import PlayerClassArray from '../../../constants/'
-
-const classes = ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior'];
-
-export default class extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            classesList: []
-        }
-    }
+// **** Redux ****
+import * as PlayerClassesActions from '../../../redux/playerClasses/actions'
+import { connect } from 'react-redux'
+class PlayerClasses extends Component {
 
     componentDidMount(){
-        this.setState({
-            classesList: classes
-        })
+        this.props.fetchPlayerClassesList()
+        // console.log("PlayerClassArray => ", PlayerClassArray)
+        // this.setState({
+        //     classesList: PlayerClassArray
+        // })
     }
 
     _onPlayerClassTapped(playerClass){
-        // Alert.alert('CLASE ', playerClass)
-        // console.log("PLAYER CLASS ITEM ==> ", playerClass)
-        Actions.heroes({title: playerClass, playerClass})
+        Actions.heroes({title: playerClass.name, playerClass})
     }
 
     _renderItem({ item, index}){
@@ -36,7 +29,7 @@ export default class extends Component {
     }
 
     render(){
-        const { classesList } = this.state
+        console.log("PlayerClasese.State => ", this.state)
         return(
             <View style={styles.container}>
                 <Image 
@@ -47,7 +40,9 @@ export default class extends Component {
                 <FlatList
                     paddingTop={20}
                     numColumns={1}
-                    data={classesList}
+                    // data={this.stateclassesList}
+                    data={this.props.list}
+                    extraData={this.state}
                     renderItem={ value => this._renderItem(value) }
                     keyExtractor={ (item, i) => 'cell' + item}
                 />
@@ -56,3 +51,19 @@ export default class extends Component {
     }
 
 }
+const mapStateToProps = (state) => {
+    return{
+        isFetching: state.playerClasses.isFetching,
+        list: state.playerClasses.list,
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        fetchPlayerClassesList: () => {
+            dispatch(PlayerClassesActions.fetchPlayerClassesList())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerClasses)

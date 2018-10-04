@@ -4,21 +4,23 @@ import styles from './styles'
 
 export default class ClassCell extends Component{
     static defaultProps = {
-        playerClass: 'hearthstone-trans',
+        playerClass: 'Paladin',  // hearthstone-trans
         onPlayerClassPress: () => {}
     }
 
     render(){
         // console.log("THIS.PROPS ==> ", this.props)
-        // console.log("PlayerClass ==> ", playerClass)
         const { playerClass, onPlayerClassPress } = this.props
+        // console.log("PlayerClass ==> ", playerClass.imgUrl)
         const placeHolder = 'hearthstone-trans'
         const pathPlaceHolder = '../../../resources/logo-' + placeHolder + '.png'
         const pathPlayerClass = '../../../resources/logo-' + playerClass + '.png'
-        
+
         const image = require(pathPlaceHolder)
         
-        // const image = playerClass? { uri: playerClass.imgUrl } : require(pathPlaceHolder)
+        // const image = {uri: 'logo-Paladin.png'}  //(pathPlaceHolder)
+
+        // const image = playerClass? require(playerClass.imgUrl) : require(pathPlaceHolder)
         // const image = playerClass? require(pathPlayerClass) : require(pathPlaceHolder)
         // console.log("PATH PlaceHolder ===> ", pathPlaceHolder)
         // console.log("PATH PlayerClass ===> ", pathPlayerClass)
@@ -35,7 +37,7 @@ export default class ClassCell extends Component{
                 resizeMode={'center'}         
             />
             <Text style={styles.baseText} >
-                {playerClass}
+                {playerClass.name}
             </Text>
         </TouchableOpacity>                                                                                      
         )}

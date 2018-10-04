@@ -1,4 +1,4 @@
-export class PlayerClass {  
+class PlayerClass {  
     constructor(name){
         this.name = name
         this.imgUrl = '../../../resources/logo-' + name + '.png'
@@ -7,11 +7,18 @@ export class PlayerClass {
 
 const classesTypes = ['Druid', 'Hunter', 'Mage', 'Paladin', 'Priest', 'Rogue', 'Shaman', 'Warlock', 'Warrior'];
 
-// function transformArray(array){
-//     array.map(v => {
-//         v = new PlayerClass(v)
-//     })
-// }
+const classesArray = [
+        {name: "Druid", imgUrl: "../../../resources/logo-Druid.png"},
+        {name: "Hunter", imgUrl: "../../../resources/logo-Hunter.png"},
+        {name: "Mage", imgUrl: "../../../resources/logo-Mage.png"},
+        {name: "Paladin", imgUrl: "../../../resources/logo-Paladin.png"},
+        {name: "Priest", imgUrl: "../../../resources/logo-Priest.png"},
+        {name: "Rogue", imgUrl: "../../../resources/logo-Rogue.png"},
+        {name: "Shaman", imgUrl: "../../../resources/logo-Shaman.png"},
+        {name: "Warlock", imgUrl: "../../../resources/logo-Warlock.png"},
+        {name: "Warrior", imgUrl: "../../../resources/logo-Warrior.png"},
+]
+
 
 function transformArray(array){
     const aux = []
@@ -23,13 +30,6 @@ function transformArray(array){
 
 const PlayerClassArray = transformArray(classesTypes)
 
-export default PlayerClassArray
+// const PlayerClassArray = classesArray
 
-// componentDidMount(){
-//     // classesList? (this.setState({classesList: transformArray(classes)})) : []
-//     this.setState({
-//         classesList: [PlayerClassArray]
-//     })
-//     // console.log("CLASESLIST ==> ", classesList? classesList : "No Definido aun")
-//     console.log("Component Did Mount => ", PlayerClassArray)
-// }
+export default PlayerClassArray
