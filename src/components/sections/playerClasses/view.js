@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList, Image, View, Text, Alert } from 'react-native'
+import { FlatList, Image, View, Text, Alert, ActivityIndicator } from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import styles from './styles'
 import { ClassCell } from '../../widgets'
@@ -28,8 +28,20 @@ class PlayerClasses extends Component {
         )
     }
 
+    _renderActivityIndicator(){
+        if(!this.props.isFetching) {
+            return null
+        }
+        return (
+            <View style={{alignItems: 'center', justifyContent: 'center', position: 'absolute', top: 0, left: 0, bottom: 0, right: 0}}>
+                <ActivityIndicator size={'large'} color={'#0000ff'} animating={true} />
+            </View>
+        )
+    }
+
+
+    
     render(){
-        console.log("PlayerClasese.State => ", this.state)
         return(
             <View style={styles.container}>
                 <Image 
@@ -44,14 +56,16 @@ class PlayerClasses extends Component {
                     data={this.props.list}
                     extraData={this.state}
                     renderItem={ value => this._renderItem(value) }
-                    keyExtractor={ (item, i) => 'cell' + item}
+                    keyExtractor={ (item, i) => 'cell' + item.name}
                 />
+                {this._renderActivityIndicator()}
             </View>
         )
     }
 
 }
 const mapStateToProps = (state) => {
+    console.log("Player clases state => ", state)
     return{
         isFetching: state.playerClasses.isFetching,
         list: state.playerClasses.list,
