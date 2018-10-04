@@ -5,14 +5,18 @@ import { Router, Scene, Stack, Actions } from 'react-native-router-flux'
 import { Heroes, PlayerClasses } from './sections/'
 import * as api from '../api/'
 
+// REDUX
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { Provider, connect } from 'react-redux'
+import thunk from 'redux-thunk'
+import * as reducers from '../redux/'
 
+const reducer = combineReducers(reducers)
+const store = createStore(
+    reducer,
+    applyMiddleware(thunk)
+)
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
 export default class App extends Component {
  
@@ -22,21 +26,23 @@ export default class App extends Component {
   
   render() {
     return (
-<Router>
-  <Stack key="root">
-      <Scene 
-          key="heroes" 
-          component={Heroes} 
-      />  
-      <Scene 
-          key="playerClasses" 
-          component={PlayerClasses} 
-          hideNavBar={true}
-          initial={true}
-      /> 
-      
-  </Stack>
-</Router>
+      <Provider store={store} >
+        <Router>
+          <Stack key="root">
+              <Scene 
+                  key="heroes" 
+                  component={Heroes} 
+              />  
+              <Scene 
+                  key="playerClasses" 
+                  component={PlayerClasses} 
+                  hideNavBar={true}
+                  initial={true}
+              /> 
+              
+          </Stack>
+        </Router>
+      </Provider>
     );
   }
 }

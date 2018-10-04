@@ -1,50 +1,16 @@
 import React, { Component } from 'react'
 import { FlatList, View,  Alert} from 'react-native'
 import styles from './styles'
+import { connect } from 'react-redux'
+import * as HeroesActions from '../../../redux/heroes/actions'
 
-import * as api from '../../../api'
 import { HeroeCell } from '../../widgets'
 
 class Heroes extends Component {
 
-    constructor(props){
-        super(props)
-        this.state = {
-            heroesList: [],
-            playerClass: 'Shaman'
-        }
-    }
-
     componentDidMount(){
-        this.setState({
-            playerClass: this.props.playerClass
-        })
-        console.log("HEROES PROPS => ", this.props)
-        this._fetchHeroesLIst()
-    }
-
-    _fetchHeroesLIst(){
-
-        api.fetchHeroes().then( response => {
-            if (response) {
-                const allHeroreslist = response.data
-                const aux = []
-                allHeroreslist.forEach(hero => {
-                    if (hero.playerClass === this.state.playerClass) aux.push(hero)
-                });
-                
-                this.setState({ heroesList: aux }) 
-            }else{
-                this.setState({ heroesList: null }) 
-            }
-
-        }).catch( error => {
-            console.log("Fect Heroes List ERROR ==> ", error)
-            this.setState({ heroesList: [] })
-        })
-
-        // api.fetchHeroes().then( response => {
-        //     this.setState({ heroesList: response? response.data : null}) 
+        // console.log("HEROES PROPS => ", this.props)
+        this.props.fetchHeroesList()
     }
 
     _onHeroeTapped(heroe){
@@ -53,17 +19,20 @@ class Heroes extends Component {
     }
 
     // de value, tomamos sólo los valores que necesitamos, usando llaves
-    _renderItem({ item, index}, playerClass){
+    _renderItem({ item, index}){
         return <HeroeCell heroe={item} onHeroePress={ () => this._onHeroeTapped(item)} />
     }
 
     render(){
+        console.log("THIS.PROPS => ", this.props)
+        console.log("THIS.STATE => ", this.state)
         return(
             <View style={styles.container}>
                 <FlatList
                     numColumns={2}
-                    data={this.state.heroesList}
-                    renderItem={ value => this._renderItem(value, "Paladin") }
+                    data={this.props.list}
+                    extraData={this.state}
+                    renderItem={ value => this._renderItem(value) }
                     keyExtractor={ (item, i) => 'cell' + item.cardId}
                 />
             </View>
@@ -71,4 +40,19 @@ class Heroes extends Component {
     }
 }
 
-export default Heroes
+const mapStateToProps = (state) => {
+    return{
+        isFetching: state.heroes.isFetching,
+        list: state.heroes.list,
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        fetchHeroesList: () => {
+            dispatch(HeroesActions.fetchHeroesList())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Heroes)
