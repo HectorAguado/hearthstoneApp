@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { FlatList, View,  Alert, ActivityIndicator} from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import styles from './styles'
 import { HeroeCell } from '../../widgets'
 
 // **** Redux ****
 import { connect } from 'react-redux'
 import * as HeroesActions from '../../../redux/heroes/actions'
-import {playerClasses} from '../../../redux/index';
-
 
 class Heroes extends Component {
 
@@ -16,8 +15,10 @@ class Heroes extends Component {
         this.props.fetchHeroesList()
     }
 
-    _onHeroeTapped(heroe){
-        Alert.alert('HEROE NAME ', heroe.name)
+    _onHeroeTapped(hero){
+        this.props.onHeroTapped(hero)
+        // Alert.alert('HEROE NAME ', heroe.name)
+        
     }
 
     // de value, tomamos sólo los valores que necesitamos, usando llaves
@@ -67,6 +68,10 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchHeroesList: () => {
             dispatch(HeroesActions.fetchHeroesList())
+        },
+        onHeroTapped: hero => {
+            dispatch(HeroesActions.setItem(hero))
+            Actions.heroDetail({title: hero.name})
         }
     }
 }

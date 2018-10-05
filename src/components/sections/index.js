@@ -1,7 +1,9 @@
-import Heroes from './heroes/'
 import PlayerClasses from './playerClasses'
+import Heroes from './heroes/'
+import HeroDetail from './heroDetail'
 
 export {
-    Heroes,
     PlayerClasses,
+    Heroes,
+    HeroDetail,
 }
