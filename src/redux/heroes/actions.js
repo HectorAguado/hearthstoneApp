@@ -24,19 +24,24 @@ export function setItem(value) {
     }
 }
 
-/***** Acciones Asíncronas *****/ // Redux Thunk api la podemos cargar, porqe en app.js usamos thunk.withExtraArgument(api). Ya no es necesario importar api en cada actions.js
+/***** Acciones Asíncronas *****/ 
+// Redux Thunk. api la podemos cargar, porqe en app.js usamos thunk.withExtraArgument(api). Ya no es necesario importar api en cada actions.js
+// como extra argument se puede mandar una variable o un objeto { api: api, nombre: 'Luis', ...} y acceder con argumento.api ...
 export function fetchHeroesList() {
     return (dispatch, getState, api ) => {
         const playerClass = getState().playerClasses.item
         if(!playerClass){ 
             return
         }
+        dispatch(setList([]))
         dispatch(setFetching(true))
         api
             .fetchHeroes()
             .then( response => {
-                console.log("RESPONSE.DATA en FetchHeroesList => ", response.data)
-                dispatch(setList(_selectPlayerClassItems(response.data, playerClass)))
+                // console.log("RESPONSE.DATA en FetchHeroesList => ", response.data)
+                const purguedList = _selectPlayerClassItems(response.data, playerClass)
+                // console.log("PurguedList => ", purguedList)
+                dispatch(setList(purguedList))
                 dispatch(setFetching(false))
             })
             .catch( err => {

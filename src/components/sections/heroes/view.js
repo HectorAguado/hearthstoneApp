@@ -54,8 +54,7 @@ class Heroes extends Component {
 }
 
 const mapStateToProps = (state) => {
-    // console.log("THIS.PROPS => ", this.props)
-    // console.log("THIS.STATE => ", this.state)
+    // console.log("heroes state => ", state)
     return{
         isFetching: state.heroes.isFetching,
         list: state.heroes.list,
@@ -64,8 +63,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch, props) => {
-    console.log("THIS.PROPS => ", this.props)
-    console.log("THIS.STATE => ", this.state)
+    // console.log("Heroes THIS.PROPS => ", props)
     return {
         fetchHeroesList: () => {
             dispatch(HeroesActions.fetchHeroesList())

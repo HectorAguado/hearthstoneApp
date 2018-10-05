@@ -28,7 +28,7 @@ export function fetchPlayerClassesList() {
     return (dispatch, getState) => {
         dispatch(setFetching(true))
         dispatch(setList(PlayerClassArray))
-        console.log("PlayerClassArray en FetchHeroesList => ", PlayerClassArray)
         dispatch(setFetching(false))
+        // console.log("PlayerClassArray en FetchHeroesList => ", PlayerClassArray)
     }
 }

@@ -52,7 +52,7 @@ class PlayerClasses extends Component {
                     data={this.props.list}
                     extraData={this.props}
                     renderItem={ value => this._renderItem(value) }
-                    keyExtractor={ (item, i) => 'cell' + item.name}
+                    keyExtractor={ (item, i) => 'playerClass' + i}
                 />
                 {this._renderActivityIndicator()}
             </View>
@@ -75,7 +75,7 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onPlayerClassTapped: playerClass => {
             dispatch(PlayerClassesActions.setItem(playerClass))
-            Actions.heroes({title: playerClass.name, playerClass})
+            Actions.heroes({title: playerClass.name})
         }
     }
 }
