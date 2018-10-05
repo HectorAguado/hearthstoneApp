@@ -11,14 +11,11 @@ class PlayerClasses extends Component {
 
     componentDidMount(){
         this.props.fetchPlayerClassesList()
-        // console.log("PlayerClassArray => ", PlayerClassArray)
-        // this.setState({
-        //     classesList: PlayerClassArray
-        // })
     }
 
     _onPlayerClassTapped(playerClass){
-        Actions.heroes({title: playerClass.name, playerClass})
+        this.props.onPlayerClassTapped(playerClass)
+        // Actions.heroes({title: playerClass.name, playerClass})
     }
 
     _renderItem({ item, index}){
@@ -38,10 +35,9 @@ class PlayerClasses extends Component {
             </View>
         )
     }
-
-
     
     render(){
+        // console.log("this.props.playerClass => ", this.props)
         return(
             <View style={styles.container}>
                 <Image 
@@ -54,7 +50,7 @@ class PlayerClasses extends Component {
                     numColumns={1}
                     // data={this.stateclassesList}
                     data={this.props.list}
-                    extraData={this.state}
+                    extraData={this.props}
                     renderItem={ value => this._renderItem(value) }
                     keyExtractor={ (item, i) => 'cell' + item.name}
                 />
@@ -76,6 +72,10 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchPlayerClassesList: () => {
             dispatch(PlayerClassesActions.fetchPlayerClassesList())
+        },
+        onPlayerClassTapped: playerClass => {
+            dispatch(PlayerClassesActions.setItem(playerClass))
+            Actions.heroes({title: playerClass.name, playerClass})
         }
     }
 }

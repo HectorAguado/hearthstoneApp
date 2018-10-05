@@ -14,7 +14,7 @@ import * as reducers from '../redux/'
 const reducer = combineReducers(reducers)
 const store = createStore(
     reducer,
-    applyMiddleware(thunk)
+    applyMiddleware(thunk.withExtraArgument(api))
 )
 
 
@@ -30,15 +30,19 @@ export default class App extends Component {
         <Router>
           <Stack key="root">
               <Scene 
-                  key="heroes" 
-                  component={Heroes} 
-              />  
-              <Scene 
                   key="playerClasses" 
                   component={PlayerClasses} 
                   hideNavBar={true}
                   initial={true}
               /> 
+              <Scene 
+                  key="heroes" 
+                  component={Heroes}
+                  navigationBarStyle={{ backgroundColor: 'rgb(123,92,72)' }} 
+                  backButtonTintColor={'rgb(233,208,169)'}
+                  backButtonTextStyle={{color:'rgb(233,208,169)'}}
+                  titleStyle={{color: 'white', fontSize: 24, fontWeight:'bold'}}
+              />  
               
           </Stack>
         </Router>

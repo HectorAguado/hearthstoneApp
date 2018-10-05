@@ -6,6 +6,7 @@ import { HeroeCell } from '../../widgets'
 // **** Redux ****
 import { connect } from 'react-redux'
 import * as HeroesActions from '../../../redux/heroes/actions'
+import {playerClasses} from '../../../redux/index';
 
 
 class Heroes extends Component {
@@ -17,7 +18,6 @@ class Heroes extends Component {
 
     _onHeroeTapped(heroe){
         Alert.alert('HEROE NAME ', heroe.name)
-        console.log("HEROE ITEM ==> ", heroe)
     }
 
     // de value, tomamos sólo los valores que necesitamos, usando llaves
@@ -54,15 +54,18 @@ class Heroes extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log("THIS.PROPS => ", this.props)
-    console.log("THIS.STATE => ", this.state)
+    // console.log("THIS.PROPS => ", this.props)
+    // console.log("THIS.STATE => ", this.state)
     return{
         isFetching: state.heroes.isFetching,
         list: state.heroes.list,
+        // playerClass: state.heroes.item
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
+    console.log("THIS.PROPS => ", this.props)
+    console.log("THIS.STATE => ", this.state)
     return {
         fetchHeroesList: () => {
             dispatch(HeroesActions.fetchHeroesList())
