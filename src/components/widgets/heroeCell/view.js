@@ -9,19 +9,20 @@ export default class HeroeCell extends Component{
     }
 
     render(){
-        const { heroe, onHeroePress } = this.props
-        // const name = heroe? heroe.name : 'Sin Nombre'
-        // const cost = heroe? heroe.cost : 'Gratis'
+        const { heroe, img, onHeroePress } = this.props
+        name = heroe? heroe.name : 'Sin Nombre'
+        image = heroe? {uri: heroe.img } : null
+        
         return (
         <TouchableOpacity 
             onPress={ () => onHeroePress(heroe)} 
             style={styles.cellContainer}
         >
-        <Image
-            source={{uri: heroe.img }}
-            style={{width: '100%', height: '100%'}}
-            resizeMode={'cover'}
-        />
+            <Image
+                source={image}
+                style={{width: '100%', height: '100%'}}
+                resizeMode={'cover'}
+            />
         </TouchableOpacity>                                                                                      
         )}
 }
