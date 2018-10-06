@@ -23,7 +23,8 @@ class Heroes extends Component {
 
     // de value, tomamos sólo los valores que necesitamos, usando llaves
     _renderItem({ item, index}){
-        return <HeroeCell heroe={item} onHeroePress={ () => this._onHeroeTapped(item)} />
+        // return <HeroeCell heroe={item} onHeroePress={ () => this._onHeroeTapped(item)} />
+        return <HeroeCell heroe={item} onHeroePress={ this.props.onHeroTapped} />
     }
 
     _renderActivityIndicator(){
