@@ -7,7 +7,7 @@ import * as api from '../api/'
 
 // REDUX
 import { createStore, applyMiddleware, combineReducers } from 'redux'
-import { Provider, connect } from 'react-redux'
+import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import * as reducers from '../redux/'
 
@@ -28,6 +28,14 @@ const sceneDefaultStyles ={
   backButtonTextStyle: {color: themeColors.primaryLight},
   titleStyle: {color: 'white', fontSize: 24, fontWeight:'bold'},
 }
+
+const RightButton = props => (
+  <TouchableOpacity style={{padding: 10}} onPress={() => {}}>
+    <Text style={{color:'white', fontWeight:'bold'}}>
+      {'Añadir'}
+    </Text>
+  </TouchableOpacity>
+)
 
 export default class App extends Component {
  
@@ -50,6 +58,7 @@ export default class App extends Component {
                   key="heroes" 
                   component={Heroes}
                   {...sceneDefaultStyles}
+                  renderRightButton={RightButton}
                   />  
               <Scene 
                   key="heroDetail" 
