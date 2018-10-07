@@ -48,6 +48,7 @@ export default class App extends Component {
                   key="playerClasses" 
                   component={PlayerClasses} 
                   hideNavBar={true}
+                  initial={true}
                   /> 
               <Scene 
                   key="heroes" 
@@ -67,7 +68,6 @@ export default class App extends Component {
                   {...sceneDefaultStyles}
                   // titleStyle={ {color: 'white', fontSize: 16, fontWeight:'bold'}}
                   title={"Añadir"}
-                  initial={true}
                   />
           </Stack>
         </Router>

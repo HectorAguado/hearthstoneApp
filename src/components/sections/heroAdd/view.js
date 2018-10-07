@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Image, Text, ScrollView } from 'react-native'
 import styles from './styles'
 import { AppTextInput } from '../../widgets/'
 import ImagePicker from 'react-native-image-picker'
+import {themeColors} from '../../../commons/index';
 
 export default class extends Component {
     
@@ -13,7 +14,8 @@ export default class extends Component {
                 cost: '0',
                 armor: '0',
                 health: '0',
-                flavor: ""
+                flavor: "",
+                image: null,
             }
 
             this.options = {
@@ -23,6 +25,10 @@ export default class extends Component {
                     path: 'images'
                 }
             }
+    }
+
+    _onSubmit(){
+
     }
 
     _onImagePickerTapped() {
@@ -52,10 +58,20 @@ export default class extends Component {
         const imageUri = this.state.image ? this.state.image.preview : null
         const imageLabel = this.state.image ? 'Pulsa para escoger otra imagen' : 'Pulsa para elegir imagen *'
         return (
-            <View style={{marginTop: 20}}>
-                <TouchableOpacity style={styles.imageContainer} onPress={() => this._onImagePickerTapped()}>
+            <View style={styles.imagePicker}>
+                <TouchableOpacity onPress={() => this._onImagePickerTapped()}>
                     <Image source={imageUri} style={styles.image} resizeMode={'cover'} />
                     <Text style={styles.imageText}>{imageLabel}</Text>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
+    _renderButton(){
+        return(
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity onPress={ () => this._onPress() }>
+                    <Text style={styles.buttonText}>GUARDAR</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -65,19 +81,14 @@ export default class extends Component {
         return(
             <ScrollView style={styles.container} >
                 { this._renderTextInput('Nombre del héroe:', 'name', 'Ej. Reshaka' )}
+                { this._renderImageInput()}  
                 { this._renderTextInput('Coste del héroe:', 'cost', '0' )}
                 { this._renderTextInput('Armadura del héroe:', 'armor', '0' )}
                 { this._renderTextInput('Puntos de vida del héroe:', 'health', '0' )}
                 { this._renderTextInput('Frase del héroe:', 'flavor', 'Ej. Uno para todos y todos para uno' )}
+                { this._renderButton() }
                 
-                {/* <AppTextInput 
-                        label= {'Nombre del héroe:'}
-                        value= {this.state.name}
-                        placeHolder={'Ej. Reshaka'}
-                        onChangeText= { name => this.setState({ name })}
 
-                />  */}
-                { this._renderImageInput()}  
             </ScrollView>
         )
     }
