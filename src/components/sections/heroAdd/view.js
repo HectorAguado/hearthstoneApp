@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, TextInput, Text } from 'react-native'
+import { View } from 'react-native'
 import styles from './styles'
+import { AppTextInput } from '../../widgets/'
 
 export default class extends Component {
     
@@ -8,61 +9,51 @@ export default class extends Component {
             super(props)
             this.state = {
                 name: '',
-                cost: 0,
-                armor: 0,
-                health: 0,
+                cost: '0',
+                armor: '0',
+                health: '0',
                 flavor: ""
             }
     }
 
     render(){
-        this.props.title="Hola"
         return(
             <View style={styles.container} >
-                <View style={{padding:20}}>
-                    <Text style={{ color:'black', paddingBottom:5}}>
-                        Nombre del héroe:
-                    </Text>
-                    <TextInput
-                        onChangeText={ name => this.setState({name})}
-                        value={this.state.name}
-                        placeholder='Ej.: Reshaka'
-                        style={{backgroundColor: 'white', padding: 5}}
-                    />
-                </View>
-                <View style={{padding:20}}>
-                    <Text style={{ color:'black', paddingBottom:5}}>
-                        Coste:
-                    </Text>
-                    <TextInput
-                        onChangeText={ cost => this.setState({cost})}
-                        value={this.state.cost}
-                        placeholder='Ej.: 0'
-                        style={{backgroundColor: 'white', padding: 5}}
-                    />
-                </View>
-                <View style={{padding:20}}>
-                    <Text style={{ color:'black', paddingBottom:5}}>
-                        Armadura:
-                    </Text>
-                    <TextInput
-                        onChangeText={ armor => this.setState({armor})}
-                        value={this.state.name}
-                        placeholder='Ej.: Reshaka'
-                        style={{backgroundColor: 'white', padding: 5}}
-                    />
-                </View>
-                <View style={{padding:20}}>
-                    <Text style={{ color:'black', paddingBottom:5}}>
-                        Nombre del héroe:
-                    </Text>
-                    <TextInput
-                        onChangeText={ name => this.setState({name})}
-                        value={this.state.name}
-                        placeholder='Ej.: Reshaka'
-                        style={{backgroundColor: 'white', padding: 5}}
-                    />
-                </View>
+                <AppTextInput 
+                        label= {'Nombre del héroe:'}
+                        value= {this.state.name}
+                        placeHolder={'Ej. Reshaka'}
+                        onChangeText= { name => this.setState({ name })}
+                        placeholderTextColor='black'
+                /> 
+                <AppTextInput 
+                        label= {'Coste del héroe:'}
+                        value= {this.state.cost}
+                        placeHolder={'0'}
+                        onChangeText= { cost => this.setState({ cost })}
+                        placeholderTextColor='black'
+                />      
+                <AppTextInput 
+                        label= {'Armadura del héroe:'}
+                        value= {this.state.armor}
+                        placeHolder={'0'}
+                        onChangeText= { armor => this.setState({ armor })}
+                        placeholderTextColor='black'
+                /> 
+                <AppTextInput 
+                        label= {'Puntos de vida del héroe:'}
+                        value= {this.state.health}
+                        placeHolder={'0'}
+                        onChangeText= { health => this.setState({ health })}
+                        placeholderTextColor='black'
+                /> 
+                <AppTextInput 
+                        label= {'Frase del héroe:'}
+                        value= {this.state.flavor}
+                        placeHolder={'Ej. Uno para todos y todos para uno'}
+                        onChangeText= { flavor => this.setState({ flavor })}
+                        placeholderTextColor='black'
+                />       
             </View>
         )
     }

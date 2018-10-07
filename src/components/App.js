@@ -4,6 +4,7 @@ import { Router, Scene, Stack, Actions } from 'react-native-router-flux'
 
 import { PlayerClasses, Heroes, HeroDetail, HeroAdd } from './sections/'
 import * as api from '../api/'
+import { themeColors } from '../commons/'
 
 // REDUX
 import { createStore, applyMiddleware, combineReducers } from 'redux'
@@ -16,11 +17,6 @@ const store = createStore(
     reducer,
     applyMiddleware(thunk.withExtraArgument(api))
 )
-
-const themeColors = {
-  primaryLight: 'rgb(233,208,169)',
-  dark: 'rgb(123,92,72)'
-}
 
 const sceneDefaultStyles ={
   navigationBarStyle: { backgroundColor: themeColors.dark },
