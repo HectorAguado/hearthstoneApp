@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StatusBar, TouchableOpacity, Platform, StyleSheet, Text, View} from 'react-native';
 import { Router, Scene, Stack, Actions } from 'react-native-router-flux'
 
-import { PlayerClasses, Heroes, HeroDetail  } from './sections/'
+import { PlayerClasses, Heroes, HeroDetail, HeroAdd } from './sections/'
 import * as api from '../api/'
 
 // REDUX
@@ -26,11 +26,11 @@ const sceneDefaultStyles ={
   navigationBarStyle: { backgroundColor: themeColors.dark },
   backButtonTintColor: themeColors.primaryLight,
   backButtonTextStyle: {color: themeColors.primaryLight},
-  titleStyle: {color: 'white', fontSize: 24, fontWeight:'bold'},
+  titleStyle: {color: 'white', fontSize: 22, fontWeight:'bold'},
 }
 
 const RightButton = props => (
-  <TouchableOpacity style={{padding: 10}} onPress={() => {}}>
+  <TouchableOpacity style={{padding: 10}} onPress={() => Actions.heroAdd()}>
     <Text style={{color:'white', fontWeight:'bold'}}>
       {'Añadir'}
     </Text>
@@ -52,21 +52,27 @@ export default class App extends Component {
                   key="playerClasses" 
                   component={PlayerClasses} 
                   hideNavBar={true}
-                  initial={true}
                   /> 
               <Scene 
                   key="heroes" 
                   component={Heroes}
-                  {...sceneDefaultStyles}
                   renderRightButton={RightButton}
+                  {...sceneDefaultStyles}
                   />  
               <Scene 
                   key="heroDetail" 
                   component={HeroDetail}
                   {...sceneDefaultStyles}
                   titleStyle={ {color: 'white', fontSize: 16, fontWeight:'bold'}}
-              />  
-            
+                  />  
+              <Scene
+                  key="heroAdd"
+                  component={HeroAdd}
+                  {...sceneDefaultStyles}
+                  // titleStyle={ {color: 'white', fontSize: 16, fontWeight:'bold'}}
+                  title={"Añadir"}
+                  initial={true}
+                  />
           </Stack>
         </Router>
       </Provider>
