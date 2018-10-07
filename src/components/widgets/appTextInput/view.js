@@ -8,7 +8,7 @@ export default class extends Component{
     static defaultProps = {
         label: '',
         value: '',
-        placeHolder: 'pon algo',
+        placeholder: '',
         onChangeText: () => {},
         containerStyle: {},
         labelStyle: {},
@@ -16,6 +16,7 @@ export default class extends Component{
     }
 
     render(){
+        console.log("this.props => ", this.props)
         return (
             <View style={[styles.container, this.props.containerStyle]}>
                 <Text style={[styles.label, this.props.labelStyle]}>
@@ -25,7 +26,7 @@ export default class extends Component{
                     onChangeText={ v => this.props.onChangeText(v)}
                     value={this.props.value}
                     style={[styles.textInput, this.props.style]}
-                    placeholder={this.props.placeHolder}
+                    placeholder={this.props.placeholder}
                     placeholderTextColor={themeColors.primaryLight}
                 />
             </View>

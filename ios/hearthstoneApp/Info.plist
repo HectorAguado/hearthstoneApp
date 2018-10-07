@@ -42,6 +42,16 @@
 	<false/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+  
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>$(PRODUCT_NAME) Quiere acceder a su carrete de la Galería de Imágenes?</string>
+  <key>NSCameraUsageDescription</key>
+  <string>$(PRODUCT_NAME) would like to use your camera</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>$(PRODUCT_NAME) would like to save photos to your photo gallery</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>$(PRODUCT_NAME) would like to your microphone (for videos)</string>
+  
 	<key>NSAppTransportSecurity</key>
 	<!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/ -->
 	<dict>
