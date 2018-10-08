@@ -27,54 +27,58 @@ export default class extends React.Component {
         const image = hero && hero.img ? { uri: hero.img } : null
         // const image = hero && hero.imgGold ? { uri: hero.imgGold } : null
 
-        const animation = 'zoomIn'
+        const imageAnimation = 'zoomIn'
+        const viewAnimation = 'bounceInRight'
         return(
             <ScrollView style={styles.container}>
                 <Animatable.Image 
-                        const animation = 'zoomIn'
+                        animation ={imageAnimation}
                         source={image}
                         resizeMode={'contain'}
                         style={styles.image}
                 />
-                <View style={styles.row}>
-                    <Image style={styles.icon} 
-                        source={require('../../../resources/icon-cost.png')}
-                        resizeMode={'contain'}
-                        />
-                    <Text style={styles.text}>
-                        Coste: {hero.cost}
-                    </Text>
-                </View>
-                <View style={styles.row}>
-                    <Image style={styles.icon} 
-                        source={require('../../../resources/icon-health.png')}
-                        resizeMode={'contain'}
-                        />
-                    <Text style={styles.text}>
-                        Salud: {hero.health}
-                    </Text>
-                </View>
-                <View style={styles.row}>
-                    <Image style={styles.icon} 
-                        source={require('../../../resources/armor-icon.png')}
-                        resizeMode={'contain'}
-                        />
-                    <Text style={styles.text}>
-                        Armadura: {hero.armor}
-                    </Text>
-                </View>
-                <View style={styles.row}>
-                    <Image style={styles.icon} 
-                        source={require('../../../resources/logo-hearthstone-trans.png')}
-                        resizeMode={'contain'}
-                        />
-                    <Text style={styles.text}>
-                        Frase: 
-                    </Text>
-                </View>
-                    <Text style={styles.flavor}>
-                        {hero.flavor}
-                    </Text>
+                <Animatable.View animation={viewAnimation}>
+                
+                    <View style={styles.row}>
+                        <Image style={styles.icon} 
+                            source={require('../../../resources/icon-cost.png')}
+                            resizeMode={'contain'}
+                            />
+                        <Text style={styles.text}>
+                            Coste: {hero.cost}
+                        </Text>
+                    </View>
+                    <View style={styles.row}>
+                        <Image style={styles.icon} 
+                            source={require('../../../resources/icon-health.png')}
+                            resizeMode={'contain'}
+                            />
+                        <Text style={styles.text}>
+                            Salud: {hero.health}
+                        </Text>
+                    </View>
+                    <View style={styles.row}>
+                        <Image style={styles.icon} 
+                            source={require('../../../resources/armor-icon.png')}
+                            resizeMode={'contain'}
+                            />
+                        <Text style={styles.text}>
+                            Armadura: {hero.armor}
+                        </Text>
+                    </View>
+                    <View style={styles.row}>
+                        <Image style={styles.icon} 
+                            source={require('../../../resources/logo-hearthstone-trans.png')}
+                            resizeMode={'contain'}
+                            />
+                        <Text style={styles.text}>
+                            Frase: 
+                        </Text>
+                    </View>
+                        <Text style={styles.flavor}>
+                            {hero.flavor}
+                        </Text>
+                </Animatable.View>
             </ScrollView>
         )
     }
