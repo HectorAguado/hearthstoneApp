@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Image, Text, ScrollView } from 'react-native'
+import { View, TouchableOpacity, Image, Text, ScrollView, Alert } from 'react-native'
 import styles from './styles'
 import { AppTextInput } from '../../widgets/'
 import ImagePicker from 'react-native-image-picker'
@@ -13,7 +13,7 @@ export default class extends Component {
                 name: '',
                 cost: '0',
                 armor: '0',
-                health: '0',
+                health: '30',
                 flavor: "",
                 image: null,
             }
@@ -27,8 +27,31 @@ export default class extends Component {
             }
     }
 
-    _onSubmit(){
+    _validateForm(){
+        const { name, cost, armor, health, flavor, image } = this.state
+        if( name && health && image ){
+            return true
+        } else {
+            return false
+        }
+    }
 
+    _onSubmit(){
+        if(this._validateForm()){
+            const { name, cost, armor, health, flavor, image } = this.state
+            const data = {
+                name,
+                cost,
+                armor,
+                health,
+                flavor,
+                image: image.data
+            }
+            this.props.onSubmitHero(data)
+                
+        }else{
+            Alert.alert('Atención','Los campos con arterisco (*) son obligatorios')
+        }
     }
 
     _onImagePickerTapped() {
@@ -56,7 +79,7 @@ export default class extends Component {
 
     _renderImageInput() {
         const imageUri = this.state.image ? this.state.image.preview : null
-        const imageLabel = this.state.image ? 'Pulsa para escoger otra imagen' : 'Pulsa para elegir imagen *'
+        const imageLabel = this.state.image ? 'Pulsa para escoger otra imagen' : '* Pulsa para elegir imagen'
         return (
             <View style={styles.imagePicker}>
                 <TouchableOpacity onPress={() => this._onImagePickerTapped()}>
@@ -70,7 +93,7 @@ export default class extends Component {
     _renderButton(){
         return(
             <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={ () => this._onPress() }>
+                <TouchableOpacity onPress={ () => this._onSubmit() }>
                     <Text style={styles.buttonText}>GUARDAR</Text>
                 </TouchableOpacity>
             </View>
@@ -80,13 +103,13 @@ export default class extends Component {
     render(){
         return(
             <ScrollView style={styles.container} >
-                { this._renderTextInput('Nombre del héroe:', 'name', 'Ej. Reshaka' )}
+                { this._renderTextInput('* Nombre del héroe:', 'name', 'Ej. Reshaka' )}
                 { this._renderImageInput()}  
+                { this._renderButton() }
                 { this._renderTextInput('Coste del héroe:', 'cost', '0' )}
                 { this._renderTextInput('Armadura del héroe:', 'armor', '0' )}
-                { this._renderTextInput('Puntos de vida del héroe:', 'health', '0' )}
+                { this._renderTextInput('* Puntos de vida del héroe:', 'health', '30' )}
                 { this._renderTextInput('Frase del héroe:', 'flavor', 'Ej. Uno para todos y todos para uno' )}
-                { this._renderButton() }
                 
 
             </ScrollView>

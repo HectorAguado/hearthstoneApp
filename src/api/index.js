@@ -35,6 +35,12 @@ export function fetchHeroes() {
 
 }
 
+//**** Esta API no acepta funciones Post *****/
+export function postPlayerClassHero(){
+    
+}
+
+
 
 // These code snippets use an open-source library. http://unirest.io/nodejs
 /*
@@ -46,6 +52,7 @@ unirest.get("https://omgvamp-hearthstone-v1.p.mashape.com/info?locale=esES")
 });
 */
 
+// No la uso porque hay 2 clases Dream y DeadKnight que no tienen cartas de heroe.
 export function fetchClasses(){
     const url = '/info?locale=esES'
     return axios.get( url )

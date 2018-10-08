@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Image,  Text, ScrollView } from 'react-native'
 import styles from './styles';
+import * as Animatable from 'react-native-animatable';
 
 
 // const hero = {
@@ -25,9 +26,12 @@ export default class extends React.Component {
         console.log("Hero => ", hero)
         const image = hero && hero.img ? { uri: hero.img } : null
         // const image = hero && hero.imgGold ? { uri: hero.imgGold } : null
+
+        const animation = 'zoomIn'
         return(
             <ScrollView style={styles.container}>
-                <Image 
+                <Animatable.Image 
+                        const animation = 'zoomIn'
                         source={image}
                         resizeMode={'contain'}
                         style={styles.image}

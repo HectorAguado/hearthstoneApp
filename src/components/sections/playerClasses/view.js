@@ -21,7 +21,10 @@ class PlayerClasses extends Component {
     _renderItem({ item, index}){
         // console.log("ITEM VALUE ==> ", item)
         return (
-            <ClassCell playerClass={item} onPlayerClassPress={ () => this._onPlayerClassTapped(item)} />
+            <ClassCell 
+                playerClass={item} 
+                index={index}
+                onPlayerClassPress={ () => this._onPlayerClassTapped(item)} />
         )
     }
 
@@ -48,10 +51,11 @@ class PlayerClasses extends Component {
                 <FlatList
                     paddingTop={20}
                     numColumns={1}
+                    // marginBottom={10}
                     // data={this.stateclassesList}
                     data={this.props.list}
                     extraData={this.props}
-                    renderItem={ value => this._renderItem(value) }
+                    renderItem={ (item, i) => this._renderItem(item, i) }
                     keyExtractor={ (item, i) => 'playerClass' + i}
                 />
                 {this._renderActivityIndicator()}

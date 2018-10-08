@@ -19,7 +19,8 @@ export default StyleSheet.create({
         height: 200,
     },
     imageText: {
-        color: 'black',
+        color: themeColors.dark,
+        backgroundColor: themeColors.primaryLight,
         fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'center',

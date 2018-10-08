@@ -24,7 +24,11 @@ class Heroes extends Component {
     // de value, tomamos sólo los valores que necesitamos, usando llaves
     _renderItem({ item, index}){
         // return <HeroeCell heroe={item} onHeroePress={ () => this._onHeroeTapped(item)} />
-        return <HeroeCell heroe={item} onHeroePress={ this.props.onHeroTapped} />
+        return <HeroeCell 
+                    heroe={item} 
+                    index={index}
+                    onHeroePress={ this.props.onHeroTapped} 
+                />
     }
 
     _renderActivityIndicator(){
@@ -46,7 +50,7 @@ class Heroes extends Component {
                     numColumns={2}
                     data={this.props.list}
                     extraData={this.state}
-                    renderItem={ value => this._renderItem(value) }
+                    renderItem={ (item, index) => this._renderItem(item, index) }
                     keyExtractor={ (item, i) => 'cell' + item.cardId}
                 />
                 {this._renderActivityIndicator()}

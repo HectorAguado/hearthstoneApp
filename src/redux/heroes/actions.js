@@ -1,4 +1,6 @@
 import * as types from './types'
+import {playerClasses} from '../index';
+import { Actions } from 'react-native-router-flux';
 // import * as api from '../../api'
 
 /***** Acciones Puras *****/
@@ -57,4 +59,41 @@ function _selectPlayerClassItems(allHeroreslist, playerClass){
                 if (hero.playerClass === playerClass.name) aux.push(hero)
             });
             return aux         
+}
+
+export function postPlayerClassHero(data){
+    return (dispatch, getState, api) => {
+
+        const playerClass = getState().playerClasses.item
+        if(!data || !playerClass){
+            return
+        }
+
+        Actions.pop()
+        Actions.heroes({type:'reset'})
+        Actions.heroes({type:'replace'})
+    }
+        /**  Esto esta implementado a falta de que exista posibilidad de hacer un POST a la API */
+        /*  
+        dispatch(setFetching(true))
+
+        const heroData = {
+            ...data,
+            clase: playerClass,
+        }
+
+        api
+            .postPlayerClassHero(heroData)
+            .then( res => {
+                dispatch(setFetching(true))
+                dispatch(fetchHeroesList())
+                Actions.pop()
+            })
+            .catch( err => {
+                dispatch(setFetching(false))
+                console.log( "Error en postPlayerClassHero => ", err)
+            })
+    }
+
+    */
 }
