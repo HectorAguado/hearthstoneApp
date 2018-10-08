@@ -16,7 +16,7 @@ export default class extends Component{
     }
 
     render(){
-        console.log("this.props => ", this.props)
+        // console.log("this.props => ", this.props)
         return (
             <View style={[styles.container, this.props.containerStyle]}>
                 <Text style={[styles.label, this.props.labelStyle]}>

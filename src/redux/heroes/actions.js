@@ -69,9 +69,26 @@ export function postPlayerClassHero(data){
             return
         }
 
+        const heroData = {
+            ...data,
+            playerClass: playerClass.name,
+            type: "Hero",
+        }
+
+
+        /***** APAÑO **** 
+         * Como en este API no se pueden hacer POST, he dejado implementado abajo cómo se haría
+         * y he implementado este funcionamiento, para que se guarde el personaje que llega al final
+         * de la lista de heroes.
+         * Lo único, he notado que tarda muchísimo en cargarse las imágenes
+        */
+        
+        const aux = getState().heroes.list
+        aux.push(heroData)
+        
         Actions.pop()
-        // Actions.heroes({type:'reset'})
-        // Actions.heroes({type:'replace'})
+        dispatch(setList(aux))
+
     }
         /**  Esto esta implementado a falta de que exista posibilidad de hacer un POST a la API */
         /*  

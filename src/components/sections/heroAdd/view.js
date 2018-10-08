@@ -15,7 +15,7 @@ export default class extends Component {
                 armor: '0',
                 health: '30',
                 flavor: "",
-                image: null,
+                img: null,
             }
 
             this.options = {
@@ -28,8 +28,8 @@ export default class extends Component {
     }
 
     _validateForm(){
-        const { name, cost, armor, health, flavor, image } = this.state
-        if( name && health && image ){
+        const { name, cost, armor, health, flavor, img } = this.state
+        if( name && health && img ){
             return true
         } else {
             return false
@@ -38,14 +38,14 @@ export default class extends Component {
 
     _onSubmit(){
         if(this._validateForm()){
-            const { name, cost, armor, health, flavor, image } = this.state
+            const { name, cost, armor, health, flavor, img } = this.state
             const data = {
                 name,
                 cost,
                 armor,
                 health,
                 flavor,
-                image: image.data
+                img: img.data
             }
             this.props.onSubmitHero(data)
                 
@@ -60,7 +60,7 @@ export default class extends Component {
               let preview = { uri: response.uri };
               let data = 'data:image/jpeg;base64,' + response.data 
               this.setState({
-                image: { preview, data }
+                img: { preview, data }
               });
             }
           });
@@ -78,8 +78,8 @@ export default class extends Component {
     }
 
     _renderImageInput() {
-        const imageUri = this.state.image ? this.state.image.preview : null
-        const imageLabel = this.state.image ? 'Pulsa para escoger otra imagen' : '* Pulsa para elegir imagen'
+        const imageUri = this.state.img ? this.state.img.preview : null
+        const imageLabel = this.state.img ? 'Pulsa para escoger otra imagen' : '* Pulsa para elegir imagen'
         return (
             <View style={styles.imagePicker}>
                 <TouchableOpacity onPress={() => this._onImagePickerTapped()}>

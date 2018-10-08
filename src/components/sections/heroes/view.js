@@ -53,6 +53,7 @@ class Heroes extends Component {
                     renderItem={ (item, index) => this._renderItem(item, index) }
                     keyExtractor={ (item, i) => 'cell' + item.cardId}
                 />
+                {console.log("this.state ==> ", this.state)}
                 {this._renderActivityIndicator()}
             </View>
         )
