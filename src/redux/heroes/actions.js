@@ -70,8 +70,8 @@ export function postPlayerClassHero(data){
         }
 
         Actions.pop()
-        Actions.heroes({type:'reset'})
-        Actions.heroes({type:'replace'})
+        // Actions.heroes({type:'reset'})
+        // Actions.heroes({type:'replace'})
     }
         /**  Esto esta implementado a falta de que exista posibilidad de hacer un POST a la API */
         /*  
