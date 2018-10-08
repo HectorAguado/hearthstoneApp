@@ -14,11 +14,8 @@ export default class HeroeCell extends Component{
         name = heroe? heroe.name : 'Sin Nombre'
         image = heroe? {uri: heroe.img } : null
         
-        // const animation = index % 2 ? 'bounceInLeft' : 'bounceInRight'
-        // const animation = index % 2 ? 'bounceInDown' : 'bounceInUp'
         const animation = 'zoomIn'
         return (
-        // <Animatable.View animation={animation}>
             <TouchableOpacity 
                 onPress={ () => onHeroePress(heroe)} 
                 style={styles.cellContainer}
@@ -29,7 +26,6 @@ export default class HeroeCell extends Component{
                     style={{width: '100%', height: '100%'}}
                     resizeMode={'cover'}
                 />
-            </TouchableOpacity>
-        // </Animatable.View>                                                                                      
+            </TouchableOpacity>                                                                                  
         )}
 }
