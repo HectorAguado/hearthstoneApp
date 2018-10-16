@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList, View,  Alert, ActivityIndicator} from 'react-native'
+import { FlatList, View, ActivityIndicator} from 'react-native'
 import { Actions } from 'react-native-router-flux'
 import styles from './styles'
 import { HeroeCell } from '../../widgets'
@@ -11,14 +11,20 @@ import * as HeroesActions from '../../../redux/heroes/actions'
 class Heroes extends Component {
 
     componentDidMount(){
-        // console.log("HEROES PROPS => ", this.props)
         this.props.fetchHeroesList()
     }
 
+    _selectPlayerClassHeroes(){
+        const aux = []
+        const { list, playerClass } = this.props
+        list.forEach(hero => {
+            if (hero.playerClass === playerClass.name) aux.push(hero)
+        });
+        return aux         
+}
+
     _onHeroeTapped(hero){
-        this.props.onHeroTapped(hero)
-        // Alert.alert('HEROE NAME ', heroe.name)
-        
+        this.props.onHeroTapped(hero)        
     }
 
     // de value, tomamos sólo los valores que necesitamos, usando llaves
@@ -43,17 +49,17 @@ class Heroes extends Component {
     }
 
     render(){
-
+        // console.log("<heroes/view.js> this.props ==> ", this.props)
+        const selectedHeroList = this._selectPlayerClassHeroes()
         return(
             <View style={styles.container}>
                 <FlatList
                     numColumns={2}
-                    data={this.props.list}
+                    data={selectedHeroList}  //{this.props.list}
                     extraData={this.state}
                     renderItem={ (item, index) => this._renderItem(item, index) }
                     keyExtractor={ (item, i) => 'cell' + item.cardId}
                 />
-                {console.log("this.state ==> ", this.state)}
                 {this._renderActivityIndicator()}
             </View>
         )
@@ -61,16 +67,14 @@ class Heroes extends Component {
 }
 
 const mapStateToProps = (state) => {
-    // console.log("heroes state => ", state)
     return{
         isFetching: state.heroes.isFetching,
         list: state.heroes.list,
-        // playerClass: state.heroes.item
+        playerClass: state.playerClasses.item
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
-    // console.log("Heroes THIS.PROPS => ", props)
     return {
         fetchHeroesList: () => {
             dispatch(HeroesActions.fetchHeroesList())
